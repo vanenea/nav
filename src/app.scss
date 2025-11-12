@@ -1,1 +1,21 @@
 /*@import "~taro-ui/dist/style/index.scss";*/
+
+.title-with-bar {
+  font-size: 32px;
+  font-weight: bold;
+  position: relative;
+  padding-left: 20px;
+  color: #333;
+  margin-left: 0.6rem;
+}
+
+.title-with-bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 6px;
+  height: 1rem;
+  background: #6190E8;
+  border-radius: 4px;
+}

@@ -1,24 +1,14 @@
-<template>
-  <view class="page">
-    <view class="title">我的导航页</view>
-
-    <view class="grid-box">
-      <at-grid
-        :data="list"
-        @click="go"
-      />
-    </view>
-  </view>
-</template>
-
 <script setup lang="ts">
-import { ref } from 'vue'
-import { AtGrid } from 'taro-ui-vue3'
+import {ref} from 'vue'
 import Taro from '@tarojs/taro'
 
 const list = ref([
   {
-    image: 'https://img.icons8.com/color/96/gitlab.png',
+    iconInfo: {
+      size: 30,
+      color: '#6190E8',
+      value: 'search'     // Taro UI 内置 icon 名
+    },
     value: 'GitLab',
     url: 'https://gitlab.example/'
   },
@@ -28,7 +18,7 @@ const list = ref([
     url: 'https://jenkins.example/'
   },
   {
-    image: 'https://img.icons8.com/color/96/swagger.png',
+    image: 'https://img.icons8.com/color/96/jenkins.png',
     value: 'Swagger',
     url: 'https://api.example/swagger'
   }
@@ -40,12 +30,17 @@ const go = (item) => {
       window.open(item.url, '_blank')
     }
     if (process.env.TARO_ENV === 'weapp') {
-      Taro.showToast({ title: '小程序不可直接访问外链', icon: 'none' })
+      Taro.showToast({title: '小程序不可直接访问外链', icon: 'none'})
     }
   }
 }
 </script>
-
+<template>
+  <view class="page">
+    <view class="title-with-bar">我的标题</view>
+    <AtGrid :data="list" :hasBorder="true" @click="go"/>
+  </view>
+</template>
 <style lang="scss">
 
 </style>
