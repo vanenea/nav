@@ -27,7 +27,12 @@ const list = ref([
 const go = (item) => {
   if (item.url) {
     if (process.env.TARO_ENV === 'h5') {
-      window.open(item.url, '_blank')
+      if(item.url.startsWith("http") || item.url.startsWith("https")){
+        window.open( location.host + item.url, '_blank')
+      } else {
+        window.open(item.url, '_blank')
+      }
+
     }
     if (process.env.TARO_ENV === 'weapp') {
       Taro.showToast({title: '小程序不可直接访问外链', icon: 'none'})
